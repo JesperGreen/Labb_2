@@ -49,7 +49,9 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
         }
         private void ExitStore() 
         {
-        
+            WriteLine("\nPress any key to exit...");
+            ReadKey(true);
+            Environment.Exit(0);
         }
 
         private void RegisterNew() 
