@@ -28,12 +28,38 @@ namespace Labb_2
                   |_|                                                                    
 
 
-Welcome to Jesper's Essentials! What would you like to do? 
+Welcome to Jesper's Essentials! What would you like to do?
 Please navigate your options using Up & Down arrows and select with Enter/Return.";
             string[] options = { "Log in", "Register new account", "Exit" };
             Menu mainMenu = new Menu(prompt, options);
             int selectedIndex = mainMenu.Run();
 
+            switch (selectedIndex) 
+            {
+                case 0:
+                    LogIn();
+                    break;
+                case 1:
+                    RegisterNew();
+                    break;
+                case 2:
+                    ExitStore();
+                    break;
+            }
+        }
+        private void ExitStore() 
+        {
+        
+        }
+
+        private void RegisterNew() 
+        {
+            
+        }
+
+        private void LogIn() 
+        {
+            
         }
     }
 }
