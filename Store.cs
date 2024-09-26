@@ -141,6 +141,49 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
         {
             string promt = $"Welcome";
             string[] options = {"Shop", "View Cart", "Checkout", "Log out"};
+
+            Menu loggedInMenu = new Menu(promt, options);
+
+            while (true) 
+            {
+                int selectedIndex = loggedInMenu.Run();
+
+                switch (selectedIndex) 
+                {
+                    case 0:
+                        Shop(customer); 
+                            break;
+                    case 1:
+                        ViewCart(customer);
+                            break;
+                    case 2:
+                        Checkout(customer);
+                            break;
+                    case 3:
+                        WriteLine("Logging out...");
+                            return;
+                }
+            }
+        }
+
+        private void Shop(Customer customer) 
+        {
+
+        }
+
+        private void ViewCart(Customer customer) 
+        {
+
+        }
+
+        private void Checkout(Customer customer) 
+        {
+
+        }
+
+        private void LogOut(Customer customer) 
+        {
+
         }
     }
 }
