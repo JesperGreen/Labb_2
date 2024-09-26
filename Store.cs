@@ -123,6 +123,17 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
 
             Write("Enter your password: ");
             string password = ReadLine();
+
+            if (customer.VerifyPW(password))
+            {
+                WriteLine("Successfully logged in!");
+            }
+            else 
+            {
+                WriteLine("Incorrect password. Please try again.");
+                ReadKey(true);
+                LogIn();
+            }
         }
     }
 }
