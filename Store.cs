@@ -177,10 +177,22 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                 WriteLine($"{i + 1}. {products[i]}"); 
             }
 
-            WriteLine("Enter the number of the product to add it to your cart");
+            WriteLine("Enter the number of the product to add it to your cart: ");
             int choice = int.Parse(ReadLine());
-            
-            if (choice >= 0 && choice < products.Count);
+
+            if (choice >= 0 && choice < products.Count)
+            {
+                Product selectedProduct = products[choice];
+                customer.Cart.Add(selectedProduct);
+                WriteLine($"{selectedProduct.Name} added to your cart.");
+            }
+            else 
+            {
+                WriteLine("That is not an option.");
+            }
+
+            WriteLine("Press any key to return to the main menu");
+            ReadKey(true);
         }
 
         private void ViewCart(Customer customer)
