@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Labb_2
+{
+    internal class Customer
+    {
+     
+        public string Name { get; }
+        private string Password { get; }
+        public List<Product> Products { get; private set; }
+
+        public Customer(string name, string password)
+        {
+            Name = name;
+            Password = password;
+            Products = new List<Product>();
+        }
+    }
+}
