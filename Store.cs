@@ -19,10 +19,10 @@ namespace Labb_2
             customers.Add(new Customer("Fnatte", "321"));
             customers.Add(new Customer("Tjatte", "213"));
 
-            products.Add(new Product("test1", 123));
-            products.Add(new Product("test2", 1234));
-            products.Add(new Product("test3", 12345));
-            products.Add(new Product("test4", 123456));
+            products.Add(new Product("test1", 123.00m));
+            products.Add(new Product("test2", 1234.00m));
+            products.Add(new Product("test3", 12345.50m));
+            products.Add(new Product("test4", 123456.90m));
         }
         
         public void Start() 
@@ -128,6 +128,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             if (customer.VerifyPW(password))
             {
                 WriteLine("Successfully logged in!");
+                LoggedInMenu(customer);
             }
             else 
             {
@@ -166,22 +167,23 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             }
         }
 
-        private void Shop(Customer customer) 
+        private void Shop(Customer customer)
+        {
+            Clear();
+            WriteLine("<< Shop >>");
+
+            for (int i = 0; i < products.Count; i++) 
+            {
+                WriteLine($"{i + 1}. {products[i]}"); 
+            }
+        }
+
+        private void ViewCart(Customer customer)
         {
 
         }
 
-        private void ViewCart(Customer customer) 
-        {
-
-        }
-
-        private void Checkout(Customer customer) 
-        {
-
-        }
-
-        private void LogOut(Customer customer) 
+        private void Checkout(Customer customer)
         {
 
         }
