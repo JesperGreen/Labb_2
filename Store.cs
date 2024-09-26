@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,10 +19,10 @@ namespace Labb_2
             customers.Add(new Customer("Fnatte", "321"));
             customers.Add(new Customer("Tjatte", "213"));
 
-            products.Add(new Product("test", 123));
-            products.Add(new Product("test", 123));
-            products.Add(new Product("test", 123));
-            products.Add(new Product("test", 123));
+            products.Add(new Product("test1", 123));
+            products.Add(new Product("test2", 1234));
+            products.Add(new Product("test3", 12345));
+            products.Add(new Product("test4", 123456));
         }
         
         public void Start() 
@@ -134,6 +135,12 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                 ReadKey(true);
                 LogIn();
             }
+        }
+
+        private void LoggedInMenu(Customer customer) 
+        {
+            string promt = $"Welcome";
+            string[] options = {"Shop", "View Cart", "Checkout", "Log out"};
         }
     }
 }
