@@ -72,7 +72,17 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
         private void RegisterNew() 
         {
             Clear();
-            WriteLine("   Register new account   ");
+            WriteLine("<< Register new account >>");
+            Write("Enter your name: ");
+            string name = ReadLine();
+
+            if (customers.Exists(c => c.Name == name)) 
+            {
+                WriteLine("That username is already taken.");
+                WriteLine("Press any key to return to the main menu.");
+                ReadKey(true);
+                return;
+            }
         }
 
         private void LogIn() 
