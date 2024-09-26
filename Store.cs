@@ -176,6 +176,11 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             {
                 WriteLine($"{i + 1}. {products[i]}"); 
             }
+
+            WriteLine("Enter the number of the product to add it to your cart");
+            int choice = int.Parse(ReadLine());
+            
+            if (choice >= 0 && choice < products.Count);
         }
 
         private void ViewCart(Customer customer)
