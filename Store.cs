@@ -9,8 +9,8 @@ namespace Labb_2
 {
     internal class Store
     {
-        static List<Customer> customers = new List<Customer>();
-        static List<Product> products = new List<Product>();
+        private List<Customer> customers = new List<Customer>();
+        private List<Product> products = new List<Product>();
 
         public Store() 
         {
@@ -90,8 +90,8 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             Customer newCustomer = new Customer(name, password);
             customers.Add(newCustomer);
 
-            WriteLine("123");
-            WriteLine("abc");
+            WriteLine("Account successfully created!");
+            WriteLine("Press any key to return to the main menu...");
             ReadKey(true);
 
         }
@@ -100,7 +100,26 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
         {
             Clear();
             WriteLine("<< Log In >>");
-            Write("Enter your name");
+            Write("Enter your name: ");
+            string name = ReadLine();
+
+            Customer customer = customers.Find(c => c.Name == name);
+
+            if (customer == null) 
+            {
+                WriteLine("Customer not found. Would you like to register a new account? (Y/N)");
+                string choice = ReadLine().ToUpper();
+                if (choice == "Y")
+                {
+                    RegisterNew();
+                }
+                else
+                {
+                    WriteLine("Returning to main menu...");
+                    ReadKey(true);
+                }
+                return;
+            }
         }
     }
 }
