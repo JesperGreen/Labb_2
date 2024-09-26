@@ -6,18 +6,37 @@ using System.Threading.Tasks;
 
 namespace Labb_2
 {
-    internal class Customer
+    public class Customer
     {
      
         public string Name { get; }
         private string Password { get; }
-        public List<Product> Products { get; private set; }
+        public List<Product> ShoppingCart { get; private set; }
 
         public Customer(string name, string password)
         {
             Name = name;
             Password = password;
-            Products = new List<Product>();
+            ShoppingCart = new List<Product>();
+        }
+
+        public bool VerifyPW(string password) 
+        {
+            return Password.Contains(password);
+        }
+        public void AddToCart(Product product) 
+        {
+            ShoppingCart.Add(product);
+        }
+
+        public decimal GetTotalPrice()
+        {
+            return ShoppingCart.Sum(x => x.Price);
+        }
+
+        public int GetTotalItems() 
+        {
+            return ShoppingCart.Count;
         }
     }
 }
