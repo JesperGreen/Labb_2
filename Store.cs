@@ -15,8 +15,8 @@ namespace Labb_2
         public Store() 
         {
             customers.Add(new Customer("Knatte", "123"));
-            customers.Add(new Customer("Knatte", "123"));
-            customers.Add(new Customer("Knatte", "123"));
+            customers.Add(new Customer("Fnatte", "321"));
+            customers.Add(new Customer("Tjatte", "213"));
 
             products.Add(new Product("test", 123));
             products.Add(new Product("test", 123));
@@ -83,11 +83,24 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                 ReadKey(true);
                 return;
             }
+
+            Write("Enter a password: ");
+            string password = ReadLine();
+
+            Customer newCustomer = new Customer(name, password);
+            customers.Add(newCustomer);
+
+            WriteLine("123");
+            WriteLine("abc");
+            ReadKey(true);
+
         }
 
         private void LogIn() 
         {
-            
+            Clear();
+            WriteLine("<< Log In >>");
+            Write("Enter your name");
         }
     }
 }
