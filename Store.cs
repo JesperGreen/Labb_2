@@ -185,12 +185,14 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
 
         private void ViewCart(Customer customer)
         {
-
+            Clear();
+            WriteLine("");
         }
 
         private void Checkout(Customer customer)
         {
-
+            Clear();
+            WriteLine("");
         }
     }
 }
