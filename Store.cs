@@ -9,6 +9,21 @@ namespace Labb_2
 {
     internal class Store
     {
+        static List<Customer> customers = new List<Customer>();
+        static List<Product> products = new List<Product>();
+
+        public Store() 
+        {
+            customers.Add(new Customer("Knatte", "123"));
+            customers.Add(new Customer("Knatte", "123"));
+            customers.Add(new Customer("Knatte", "123"));
+
+            products.Add(new Product("test", 123));
+            products.Add(new Product("test", 123));
+            products.Add(new Product("test", 123));
+            products.Add(new Product("test", 123));
+        }
+        
         public void Start() 
         {
             Title = "Jesper's Essentials";
@@ -56,7 +71,8 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
 
         private void RegisterNew() 
         {
-            
+            Clear();
+            WriteLine("   Register new account   ");
         }
 
         private void LogIn() 
