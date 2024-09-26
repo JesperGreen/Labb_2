@@ -120,6 +120,9 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                 }
                 return;
             }
+
+            Write("Enter your password: ");
+            string password = ReadLine();
         }
     }
 }
