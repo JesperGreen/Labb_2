@@ -11,32 +11,38 @@ namespace Labb_2
      
         public string Name { get; }
         private string Password { get; }
-        public List<Product> ShoppingCart { get; private set; }
+        public List<Product> Cart { get; }
 
         public Customer(string name, string password)
         {
             Name = name;
             Password = password;
-            ShoppingCart = new List<Product>();
+            Cart = new List<Product>();
         }
 
         public bool VerifyPW(string password) 
         {
-            return Password.Contains(password);
+            return Password == password;
         }
+
+        public override string ToString() 
+        {
+            return $"Customer:{Name}, Cart: {Cart.Count} items";
+        }
+        
         public void AddToCart(Product product) 
         {
-            ShoppingCart.Add(product);
+            Cart.Add(product);
         }
 
         public decimal GetTotalPrice()
         {
-            return ShoppingCart.Sum(x => x.Price);
+            return Cart.Sum(x => x.Price);
         }
 
         public int GetTotalItems() 
         {
-            return ShoppingCart.Count;
+            return Cart.Count;
         }
     }
 }
