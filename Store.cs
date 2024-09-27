@@ -74,7 +74,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
         {
             Clear();
             WriteLine("<< Register new account >>");
-            Write("Enter your name: ");
+            Write("Enter your username: ");
             string name = ReadLine();
 
             if (customers.Exists(c => c.Name == name)) 
@@ -178,7 +178,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             }
 
             WriteLine("Enter the number of the product to add it to your cart: ");
-            int choice = int.Parse(ReadLine());
+            int choice = int.Parse(ReadLine()) - 1;
 
             if (choice >= 0 && choice < products.Count)
             {
@@ -191,7 +191,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                 WriteLine("That is not an option.");
             }
 
-            WriteLine("Press any key to return to the main menu");
+            WriteLine("Press any key to return to the main menu...");
             ReadKey(true);
         }
 
