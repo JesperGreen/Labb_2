@@ -191,7 +191,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                 WriteLine("That is not an option.");
             }
 
-            WriteLine("Press any key to return to the main menu");
+            WriteLine("Press any key to return to the main menu...");
             ReadKey(true);
         }
 
@@ -215,7 +215,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                 WriteLine($"\nTotal: {total:C}");
             }
 
-            WriteLine("bla bla bla");
+            WriteLine("Press any key to return to the main menu...");
             ReadKey(true);
         }
 
@@ -223,6 +223,11 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
         {
             Clear();
             WriteLine("<< Checkout >>");
+
+            if (customer.Cart.Count == 0) 
+            {
+                WriteLine("Your cart is empty.");
+            }
 
             WriteLine("asd123123asd");
             ReadKey(true);
