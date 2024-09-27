@@ -191,20 +191,41 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                 WriteLine("That is not an option.");
             }
 
-            WriteLine("Press any key to return to the main menu...");
+            WriteLine("Press any key to return to the main menu");
             ReadKey(true);
         }
 
         private void ViewCart(Customer customer)
         {
             Clear();
-            WriteLine("");
+            WriteLine("<< Your Cart >>");
+
+            if (customer.Cart.Count == 0)
+            {
+                WriteLine("Your cart is empty.");
+            }
+            else
+            {
+                decimal total = 0;
+                foreach(Product product in customer.Cart)
+                {
+                    WriteLine(product.Name);
+                    total += product.Price;
+                }
+                WriteLine($"\nTotal: {total:C}");
+            }
+
+            WriteLine("bla bla bla");
+            ReadKey(true);
         }
 
         private void Checkout(Customer customer)
         {
             Clear();
-            WriteLine("");
+            WriteLine("<< Checkout >>");
+
+            WriteLine("asd123123asd");
+            ReadKey(true);
         }
     }
 }
