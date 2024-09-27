@@ -224,9 +224,19 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             Clear();
             WriteLine("<< Checkout >>");
 
-            if (customer.Cart.Count == 0) 
+            if (customer.Cart.Count == 0)
             {
                 WriteLine("Your cart is empty.");
+            }
+            else 
+            {
+                decimal total = 0;
+                foreach (Product product in customer.Cart) 
+                {
+                    total += product.Price;
+                }
+
+                WriteLine($"{total:C}");
             }
 
             WriteLine("asd123123asd");
