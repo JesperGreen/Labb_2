@@ -44,6 +44,11 @@ namespace Labb_2
         {
             return Cart.Count;
         }
+
+        public string GetCustomerInfo() 
+        {
+            return $"{Name},{Password}";
+        }
     }
 
     public class GoldCustomer : Customer 
@@ -88,4 +93,3 @@ namespace Labb_2
         }
     }
 }
-
