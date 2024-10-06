@@ -91,7 +91,25 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             Write("Enter a password: ");
             string password = ReadLine();
 
+            WriteLine("Choose your customer type: 1. Gold, 2. Silver, 3. Bronze");
+            int customerTypeChoice = int.Parse(ReadLine());
+
             Customer newCustomer = new Customer(name, password);
+            switch (customerTypeChoice) 
+            {
+                case 1:
+                    newCustomer = new GoldCustomer(name, password);
+                    break;
+                case 2:
+                    newCustomer = new SilverCustomer(name, password);
+                    break;
+                case 3:
+                    newCustomer = new BronzeCustomer(name, password);
+                    break;
+                default:
+                    WriteLine("Invalid choice, defaulting to Bronze.");
+                    break;
+            }
             customers.Add(newCustomer);
 
             WriteLine("Account successfully created!");
