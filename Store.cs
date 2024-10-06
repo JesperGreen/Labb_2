@@ -240,22 +240,22 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             ReadKey(true);
         }
 
-        private void Checkout(Customer customer)
+        private void Checkout(Customer loggedInCustomer)
         {
             Clear();
             WriteLine("<< Checkout >>");
 
-            if (customer.Cart.Count == 0)
+            if (loggedInCustomer.Cart.Count == 0)
             {
                 WriteLine("Your cart is empty.");
             }
             else 
             {
-                decimal total = customer.GetTotalPrice();
+                decimal total = loggedInCustomer.GetTotalPrice();
                 WriteLine($"Your total is {total:C}");
                 WriteLine("Press any key to confirm checkout...");
                 ReadKey(true);
-                customer.Cart.Clear();
+                loggedInCustomer.Cart.Clear();
                 WriteLine("Checkout complete! Your cart has been cleared, have a nice day!");
             }
 
