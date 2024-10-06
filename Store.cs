@@ -253,7 +253,10 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             {
                 decimal total = customer.GetTotalPrice();
                 WriteLine($"Your total is {total:C}");
-
+                WriteLine("Press any key to confirm checkout...");
+                ReadKey(true);
+                customer.Cart.Clear();
+                WriteLine("Checkout complete! Your cart has been cleared, have a nice day!");
             }
 
             WriteLine("Press any key to return to the main menu...");
