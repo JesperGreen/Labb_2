@@ -251,13 +251,9 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             }
             else 
             {
-                decimal total = 0;
-                foreach (Product product in customer.Cart) 
-                {
-                    total += product.Price;
-                }
+                decimal total = customer.GetTotalPrice();
+                WriteLine($"Your total is {total:C}");
 
-                WriteLine($"Your total is {total:C}. ");
             }
 
             WriteLine("Press any key to return to the main menu...");
