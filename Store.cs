@@ -68,6 +68,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
         }
         private void ExitStore() 
         {
+            SaveCustomersToFile();
             WriteLine("\nPress any key to exit...");
             ReadKey(true);
             Environment.Exit(0);
@@ -137,7 +138,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                 }
                 else
                 {
-                    WriteLine("Returning to main menu...");
+                    WriteLine("Exiting...Good Bye!");
                     ReadKey(true);
                 }
                 return;
@@ -262,5 +263,17 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             WriteLine("Press any key to return to the main menu...");
             ReadKey(true);
         }
+
+        private void SaveCustomersToFile() 
+        {
+            using (StreamWriter writer = new StreamWriter("customers.txt")) 
+            {
+                foreach (var customer in customers) 
+                {
+                    writer.WriteLine(customer.GetCustomerInfo());
+                }
+            }
+        }
     }
 }
+       
