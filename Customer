@@ -35,7 +35,7 @@ namespace Labb_2
             Cart.Add(product);
         }
 
-        public decimal GetTotalPrice()
+        public virtual decimal GetTotalPrice()
         {
             return Cart.Sum(x => x.Price);
         }
@@ -57,6 +57,34 @@ namespace Labb_2
         {
             decimal total = base.GetTotalPrice();
             return total * 0.85m;
+        }
+    }
+
+    public class SilverCustomer : Customer
+    {
+        public SilverCustomer(string name, string password) : base(name, password)
+        {
+
+        }
+
+        public override decimal GetTotalPrice()
+        {
+            decimal total = base.GetTotalPrice();
+            return total * 0.90m;
+        }
+    }
+
+    public class BronzeCustomer : Customer
+    {
+        public BronzeCustomer(string name, string password) : base(name, password)
+        {
+
+        }
+
+        public override decimal GetTotalPrice()
+        {
+            decimal total = base.GetTotalPrice();
+            return total * 0.95m;
         }
     }
 }
