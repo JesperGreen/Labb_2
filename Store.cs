@@ -264,6 +264,17 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             ReadKey(true);
         }
 
+        private void DisplayTotalPriceCurrencies(Customer loggedInCustomer) 
+        {
+            decimal total = loggedInCustomer.GetTotalPrice();
+            decimal eurRate = 0.10m;
+            decimal usdRate = 0.11m;
+
+            WriteLine($"Total in SEK: {total:C}");
+            WriteLine($"Total in EUR: {total: * eurRate:C}");
+            WriteLine($"Total in USD: {total: *usdRate:C}");
+        }
+
         private void SaveCustomersToFile() 
         {
             using (StreamWriter writer = new StreamWriter("customers.txt")) 
@@ -276,4 +287,3 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
         }
     }
 }
-       
