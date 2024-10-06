@@ -12,6 +12,7 @@ namespace Labb_2
     {
         private List<Customer> customers = new List<Customer>();
         private List<Product> products = new List<Product>();
+        private ExchangeRates exchangeRates;
 
         public Store() 
         {
@@ -28,10 +29,17 @@ namespace Labb_2
             
         }
         
-        public void Start() 
+        public async Task Start() 
         {
+            await LoadExchangeRatesAsync();
             Title = "Jesper's Essentials";
             RunMainMenu();
+        }
+
+        private async Task LoadExchangeRatesAsync() 
+        {
+            CurrencyService currencyService = new CurrencyService();
+            exchangeRates = await currencyService.GetExchangeRatesAsync();
         }
 
         private void RunMainMenu()
@@ -254,6 +262,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             {
                 decimal total = loggedInCustomer.GetTotalPrice();
                 WriteLine($"Your total is {total:C}");
+                DisplayTotalPriceCurrencies(loggedInCustomer);
                 WriteLine("Press any key to confirm checkout...");
                 ReadKey(true);
                 loggedInCustomer.Cart.Clear();
@@ -267,12 +276,10 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
         private void DisplayTotalPriceCurrencies(Customer loggedInCustomer) 
         {
             decimal total = loggedInCustomer.GetTotalPrice();
-            decimal eurRate = 0.10m;
-            decimal usdRate = 0.11m;
 
             WriteLine($"Total in SEK: {total:C}");
-            WriteLine($"Total in EUR: {total: * eurRate:C}");
-            WriteLine($"Total in USD: {total: *usdRate:C}");
+            WriteLine($"Total in EUR: {total: * exchangeRates.EUR:C}");
+            WriteLine($"Total in USD: {total: * exchangeRates.USD:C}");
         }
 
         private void SaveCustomersToFile() 
