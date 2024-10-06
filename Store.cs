@@ -19,10 +19,13 @@ namespace Labb_2
             customers.Add(new Customer("Fnatte", "321"));
             customers.Add(new Customer("Tjatte", "213"));
 
-            products.Add(new Product("test1", 123.00m));
-            products.Add(new Product("test2", 1234.00m));
-            products.Add(new Product("test3", 12345.50m));
-            products.Add(new Product("test4", 123456.90m));
+            products.Add(new Product("Sausage", 69.00m));
+            products.Add(new Product("Coffee", 39.90m));
+            products.Add(new Product("Apple", 9.50m));
+            products.Add(new Product("Kebabpizza", 120.00m));
+            products.Add(new Product("Wedding cake", 420.00m));
+            products.Add(new Product("Snus", 123456.90m));
+            
         }
         
         public void Start() 
@@ -92,7 +95,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             customers.Add(newCustomer);
 
             WriteLine("Account successfully created!");
-            WriteLine("Press any key to return to the main menu...");
+            LogIn();
             ReadKey(true);
 
         }
@@ -236,10 +239,10 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                     total += product.Price;
                 }
 
-                WriteLine($"{total:C}");
+                WriteLine($"Your total is {total:C}. ");
             }
 
-            WriteLine("asd123123asd");
+            WriteLine("Press any key to return to the main menu...");
             ReadKey(true);
         }
     }
