@@ -15,6 +15,12 @@ namespace Labb_2
 
         public Customer(string name, string password)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Name cannot be null or empty.", nameof(name));
+
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Password cannot be null or empty.", nameof(password));
+
             Name = name;
             Password = password;
             Cart = new List<Product>();
@@ -25,11 +31,11 @@ namespace Labb_2
             return Password == password;
         }
 
-        public override string ToString() 
+        public override string ToString()
         {
-            return $"Customer:{Name}, Cart: {Cart.Count} items";
+            return $"Customer: {Name}, Cart: {Cart.Count} items, Total Price: {GetTotalPrice():C}";
         }
-        
+
         public void AddToCart(Product product) 
         {
             Cart.Add(product);
