@@ -12,9 +12,8 @@ namespace Labb_2
     {
         private List<Customer> customers = new List<Customer>();
         private List<Product> products = new List<Product>();
-        private ExchangeRates exchangeRates;
 
-        public Store() 
+        public Store()
         {
             customers.Add(new Customer("Knatte", "123"));
             customers.Add(new Customer("Fnatte", "321"));
@@ -26,20 +25,13 @@ namespace Labb_2
             products.Add(new Product("Kebabpizza", 120.00m));
             products.Add(new Product("Wedding cake", 420.00m));
             products.Add(new Product("Snus", 123456.90m));
-            
-        }
-        
-        public async Task Start() 
-        {
-            await LoadExchangeRatesAsync();
-            Title = "Jesper's Essentials";
-            RunMainMenu();
+
         }
 
-        private async Task LoadExchangeRatesAsync() 
+        public void Start()
         {
-            CurrencyService currencyService = new CurrencyService();
-            exchangeRates = await currencyService.GetExchangeRatesAsync();
+            Title = "Jesper's Essentials";
+            RunMainMenu();
         }
 
         private void RunMainMenu()
@@ -61,7 +53,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             Menu mainMenu = new Menu(prompt, options);
             int selectedIndex = mainMenu.Run();
 
-            switch (selectedIndex) 
+            switch (selectedIndex)
             {
                 case 0:
                     LogIn();
@@ -74,7 +66,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                     break;
             }
         }
-        private void ExitStore() 
+        private void ExitStore()
         {
             SaveCustomersToFile();
             WriteLine("\nPress any key to exit...");
@@ -82,14 +74,14 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             Environment.Exit(0);
         }
 
-        private void RegisterNew() 
+        private void RegisterNew()
         {
             Clear();
             WriteLine("<< Register new account >>");
             Write("Enter your username: ");
             string name = ReadLine();
 
-            if (customers.Exists(c => c.Name == name)) 
+            if (customers.Exists(c => c.Name == name))
             {
                 WriteLine("That username is already taken.");
                 WriteLine("Press any key to return to the main menu.");
@@ -104,7 +96,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             int customerTypeChoice = int.Parse(ReadLine());
 
             Customer newCustomer = new Customer(name, password);
-            switch (customerTypeChoice) 
+            switch (customerTypeChoice)
             {
                 case 1:
                     newCustomer = new GoldCustomer(name, password);
@@ -127,7 +119,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
 
         }
 
-        private void LogIn() 
+        private void LogIn()
         {
             Clear();
             WriteLine("<< Log In >>");
@@ -136,7 +128,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
 
             Customer customer = customers.Find(c => c.Name == name);
 
-            if (customer == null) 
+            if (customer == null)
             {
                 WriteLine("Customer not found. Would you like to register a new account? (Y/N)");
                 string choice = ReadLine().ToUpper();
@@ -160,7 +152,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                 WriteLine("Successfully logged in!");
                 LoggedInMenu(customer);
             }
-            else 
+            else
             {
                 WriteLine("Incorrect password. Please try again.");
                 ReadKey(true);
@@ -168,31 +160,31 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             }
         }
 
-        private void LoggedInMenu(Customer customer) 
+        private void LoggedInMenu(Customer customer)
         {
             string promt = $"Welcome";
-            string[] options = {"Shop", "View Cart", "Checkout", "Log out"};
+            string[] options = { "Shop", "View Cart", "Checkout", "Log out" };
 
             Menu loggedInMenu = new Menu(promt, options);
 
-            while (true) 
+            while (true)
             {
                 int selectedIndex = loggedInMenu.Run();
 
-                switch (selectedIndex) 
+                switch (selectedIndex)
                 {
                     case 0:
-                        Shop(customer); 
-                            break;
+                        Shop(customer);
+                        break;
                     case 1:
                         ViewCart(customer);
-                            break;
+                        break;
                     case 2:
                         Checkout(customer);
-                            break;
+                        break;
                     case 3:
                         WriteLine("Logging out...");
-                            return;
+                        return;
                 }
             }
         }
@@ -202,9 +194,9 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             Clear();
             WriteLine("<< Shop >>");
 
-            for (int i = 0; i < products.Count; i++) 
+            for (int i = 0; i < products.Count; i++)
             {
-                WriteLine($"{i + 1}. {products[i]}"); 
+                WriteLine($"{i + 1}. {products[i]}");
             }
 
             WriteLine("Enter the number of the product to add it to your cart: ");
@@ -216,7 +208,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                 customer.Cart.Add(selectedProduct);
                 WriteLine($"{selectedProduct.Name} added to your cart.");
             }
-            else 
+            else
             {
                 WriteLine("That is not an option.");
             }
@@ -237,7 +229,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             else
             {
                 decimal total = 0;
-                foreach(Product product in customer.Cart)
+                foreach (Product product in customer.Cart)
                 {
                     WriteLine(product.Name);
                     total += product.Price;
@@ -258,11 +250,10 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             {
                 WriteLine("Your cart is empty.");
             }
-            else 
+            else
             {
                 decimal total = loggedInCustomer.GetTotalPrice();
                 WriteLine($"Your total is {total:C}");
-                DisplayTotalPriceCurrencies(loggedInCustomer);
                 WriteLine("Press any key to confirm checkout...");
                 ReadKey(true);
                 loggedInCustomer.Cart.Clear();
@@ -273,20 +264,11 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             ReadKey(true);
         }
 
-        private void DisplayTotalPriceCurrencies(Customer loggedInCustomer) 
+        private void SaveCustomersToFile()
         {
-            decimal total = loggedInCustomer.GetTotalPrice();
-
-            WriteLine($"Total in SEK: {total:C}");
-            WriteLine($"Total in EUR: {total: * exchangeRates.EUR:C}");
-            WriteLine($"Total in USD: {total: * exchangeRates.USD:C}");
-        }
-
-        private void SaveCustomersToFile() 
-        {
-            using (StreamWriter writer = new StreamWriter("customers.txt")) 
+            using (StreamWriter writer = new StreamWriter("customers.txt"))
             {
-                foreach (var customer in customers) 
+                foreach (var customer in customers)
                 {
                     writer.WriteLine(customer.GetCustomerInfo());
                 }
