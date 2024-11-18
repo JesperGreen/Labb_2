@@ -155,8 +155,9 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             else
             {
                 WriteLine("Incorrect password. Please try again.");
+                WriteLine("Press any key to return to main menu...");
                 ReadKey(true);
-                LogIn();
+                RunMainMenu();
             }
         }
 
