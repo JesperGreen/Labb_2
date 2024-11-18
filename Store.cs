@@ -202,17 +202,24 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
             }
 
             WriteLine("Enter the number of the product to add it to your cart: ");
-            int choice = int.Parse(ReadLine()) - 1;
+            int choice;
+            bool validInput = false;
 
-            if (choice >= 0 && choice < products.Count)
+            while (!validInput)
             {
-                Product selectedProduct = products[choice];
-                customer.Cart.Add(selectedProduct);
-                WriteLine($"{selectedProduct.Name} added to your cart.");
-            }
-            else
-            {
-                WriteLine("That is not an option.");
+                string input = ReadLine();
+                validInput = int.TryParse(input, out choice);
+
+                if (!validInput || choice < 1 || choice > products.Count)
+                {
+                    WriteLine("Invalid choice. Please enter a number between 1 and " + products.Count);
+                }
+                else
+                {
+                    Product selectedProduct = products[choice - 1];
+                    customer.Cart.Add(selectedProduct);
+                    WriteLine($"{selectedProduct.Name} added to your cart.");
+                }
             }
 
             WriteLine("Press any key to return to the main menu...");
