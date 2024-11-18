@@ -7,8 +7,15 @@ namespace Labb_2
     {
         static void Main(string[] args)
         {
-            Store myStore = new Store();
-            myStore.Start();
+            try
+            {
+                Store myStore = new Store();
+                myStore.Start();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
         }
     }
 }
