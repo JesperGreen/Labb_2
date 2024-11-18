@@ -138,10 +138,10 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                 }
                 else
                 {
-                    WriteLine("Exiting...Good Bye!");
-                    ReadKey(true);
+                    WriteLine("Returning to main menu...");
+                    RunMainMenu();
+                    return;
                 }
-                return;
             }
 
             Write("Enter your password: ");
@@ -184,6 +184,7 @@ Please navigate your options using Up & Down arrows and select with Enter/Return
                         break;
                     case 3:
                         WriteLine("Logging out...");
+                        RunMainMenu();
                         return;
                 }
             }
